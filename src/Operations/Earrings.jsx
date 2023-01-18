@@ -1,29 +1,38 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import axios from "axios"
+import { SimpleGrid,Box } from '@chakra-ui/layout'
 const Earrings = () => {
 const [product,setProduct]=React.useState([])
  React.useEffect(()=>{
-  axios.get(`https://js211-project.onrender.com/earrings`)
+  const data=(page=1)=>{
+  axios.get(`https://js211-project.onrender.com/earrings?_limit=12&_page=${page}`)
   .then((res)=>setProduct(res.data))
   .catch((err)=>console.log(err))
+  }
+  data()
  },[])
 
   return (
     <div>
         <Navbar />
     <div>Earrings</div>
-    {product?.map(function(item){
-    return   <div key={item.id}>
-       <img src={item.img} alt="{img.about" srcset="" />
-       <h3>Price :{item.Price}</h3>
-       <h3>About : {item.about}</h3>
-       {/* <h3>Extra-Details :{item.extra-details}</h3> */}
-      </div>
- } )}
-    </div>
+    
+       
+       {product?.map(function(item){
+return <div key={item.id}>
+    <img src={item.img} />
+  <h3>Price :{item.Price}</h3>
+<h3>About : {item.about}</h3>
+       
+</div>
+
+       })}
+       </div>
+ )
+  
    
-  )
+  
 }
 
 export default Earrings
