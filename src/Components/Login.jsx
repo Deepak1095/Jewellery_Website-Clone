@@ -1,45 +1,56 @@
 //import { Link,Navigate, useNavigate } from "react-router-dom";
 import React from "react"
 import Navbar from "./Navbar";
-// import { AuthContext } from "../Context/AuthContext";
-
-
+import axios from "axios"
+import {Link} from "react-router-dom"
 function Login() {
-//   const [email,setEmail]=React.useState("")
-//   const [password,setPassword]=React.useState("")
-//    const {authState,loginUser}=React.useContext(AuthContext)
+  const [email,setEmail]=React.useState("")
+  const [password,setPassword]=React.useState("")
+  const [dl,setDl]=React.useState("")
   
-//   const submitButton=async(e)=>{
-//     e.preventDefault()
-//     try{
-//      let res=await fetch("https://reqres.in/api/login",{
-//       method:"POST",
-//       headers:{
-//         "Content-Type":"application/json"
-//       },
-//       body:JSON.stringify(
-//         {email,password}
-//       )
+  const submitButton=async(e)=>{
+    (password.length<8)?alert("password must be greater than 8 digit"):(
+        axios.post('https://js211-project.onrender.com/login', {
+            email,password
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    )}
      
-//     })
 
-//     res=await res.json()
-//    loginUser(res.token)
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-//   }
-//   if(authState.isAuth){
-//     return <Navigate to="/dashboard"/>
-//   }
-  
-   
+
+    const deleteButton=async(id)=>{
+        try{
+         let res=await fetch(`https://js211-project.onrender.com/login/${id}`,{
+          method:"Delete",
+        })
+    
+        res=await res.json()
+       
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+
   
   return (
     <div className="login-page">
 <Navbar />
-        <h1>kel</h1>
+
+        {/* <BasicUsage /> */}
+     
+        <input type="email" placeholder="enter email" value={email.value} onChange={(e)=>setEmail(e.target.value)} />
+<input type="password" placeholder="enter password" value={password.value} onChange={(e)=>setPassword(e.target.value)} />
+<button onClick={submitButton}>submit</button>
+<Link to="/signup">Sign Up page</Link>
+<input type="text" placeholder="enter password" value={dl.value} onChange={(e)=>setDl(e.target.value)} />
+<button onClick={()=>deleteButton(dl)}>delete</button>
+<Link to="/admin">admin</Link>
       {/* <form className="form" data-testid="login-form" onSubmit={submitButton}>
         <div>
           <label>

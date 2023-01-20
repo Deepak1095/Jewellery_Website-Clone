@@ -1,10 +1,10 @@
 
-export  function Pagination ({}){
-    let current=1
+export  function Pagination ({current,onChange}){
+    
     const pre=(
         <button
         disabled={current===1}
-        onClick={()=>(current-1)}
+        onClick={()=>onChange(current-1)}
         >Previous</button>
         )
         const currentPage=(
@@ -13,10 +13,10 @@ export  function Pagination ({}){
             const next=(
                 <button
                 disabled={current===10}
-                onClick={()=>(current+1)}
+                onClick={()=>onChange(current+1)}
                 >Next</button>
                 )
-                console.log(current)
+              //  console.log(current)
   return (
     <div>
         {pre}

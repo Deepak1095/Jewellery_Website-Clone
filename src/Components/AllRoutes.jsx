@@ -7,6 +7,9 @@ import AnniversaryGifts from "../Operations/AnniversaryGifts"
 import Solitaires from "../Operations/Solitaires"
 import Rings from "../Operations/Rings"
 import Earrings from "../Operations/Earrings"
+import Admin from "./Admin"
+import SignUp from "./SignUp"
+import SignIn from "./SignIn"
  
 function AllRoutes() {
   return( <div>
@@ -19,6 +22,9 @@ function AllRoutes() {
   <Route path="/rings/*" element={<Rings />}/> 
   <Route path="/earrings/*" element={<Earrings />}/> 
   <Route path="/bracelets/*" element={<Bracelets />}/>
+  <Route path="/signup/*" element={<SignUp />}/>
+  <Route path="/signin/*" element={<SignIn />}/>
+  <Route path="/admin/*" element={<Admin />}/>
 
  
 </Routes>
