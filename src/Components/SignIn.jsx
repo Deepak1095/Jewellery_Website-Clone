@@ -13,7 +13,6 @@ const SignIn = () => {
     return(
     <div>
     <Navbar/>
-      
       <div   style={{
         backgroundImage: 'url("https://cdn.caratlane.com/media/static/images/V4/2023/CL/01-JAN/AppBanner/Harry/1X.jpg")',
         backgroundSize: "cover",
