@@ -16,9 +16,6 @@ function Home() {
     <div >
         <HStack  direction={['column', 'row']} spacing="auto" margin='auto' maxW="70%">
   <Box>
-  <Link style={{paddingLeft: 13, textDecoration: 'none', color:"black"}}  to="/login"> <p>login</p></Link>
-  </Box>
-  <Box>
   <Link style={{paddingLeft: 13, textDecoration: 'none', color:"black"}}  to="/newArrivals"> <p>New Arrivals</p></Link>
   </Box>
   <Box>

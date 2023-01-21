@@ -41,6 +41,12 @@ function Login() {
   return (
     <div className="login-page">
 <Navbar />
+<div   style={{
+        backgroundImage: 'url("https://cdn.caratlane.com/media/static/images/V4/2022/CL/10-OCT/Others/insta/image3.jpg")',
+        backgroundSize:"cover",
+        height: "90vh",
+        color: "#f5f5f5"
+      }}>
 
         {/* <BasicUsage /> */}
      
@@ -85,6 +91,7 @@ function Login() {
           Go Back
         </Link>
       </div> */}
+    </div>
     </div>
   );
 }
