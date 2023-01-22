@@ -15,7 +15,7 @@ import {
 const Admin = () => {
     const [linkDetails,setLinkDetails]=useState("")
     //const val=useRef("")
-   
+   const [product,setProduct]=useState("")
     
 
 
@@ -61,7 +61,12 @@ const deleteData=(id)=>{
   axios.delete(`https://js211-project.onrender.com/earrings/${id}`)
 }
 
-
+const viewData=(id)=>{
+  axios.get(`https://js211-project.onrender.com/bangles-bracelets/${id}`)
+  .then((res)=>setProduct(res.data))
+  .catch((err)=>console.log(err))
+  }
+  
 function PostModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -169,13 +174,14 @@ function ViewModal() {
           <ModalCloseButton />
           <ModalBody>
          <SimpleGrid columns={1} spacing={10}>
-         <Input placeholder='Enter id' style={{height:"50px"}} />
+         <Input placeholder='Enter id' style={{height:"50px"}} ref={val}/>
         
 </SimpleGrid>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme='blue' mr={3} onClick={(() => {
+          viewData(val.current.value)})}>
               Submit
             </Button>
           </ModalFooter>
@@ -202,6 +208,10 @@ function ViewModal() {
   <UpdateModal />
   <br/>
   <ViewModal />
+  <div style={{display:"flex"}}>
+      <img src={product?.img}  />
+        <img src={product?.img}  />
+      </div>
   </div>
   </div>
  
