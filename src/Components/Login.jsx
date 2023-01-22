@@ -3,6 +3,13 @@ import React from "react"
 import Navbar from "./Navbar";
 import axios from "axios"
 import {Link} from "react-router-dom"
+import {
+  FormControl,
+  FormLabel,
+  VStack,
+  StackDivider
+} from '@chakra-ui/react'
+
 function Login() {
   const [email,setEmail]=React.useState("")
   const [password,setPassword]=React.useState("")
@@ -48,49 +55,48 @@ function Login() {
         color: "#f5f5f5"
       }}>
 
-        {/* <BasicUsage /> */}
-     
-        <input type="email" placeholder="enter email" value={email.value} onChange={(e)=>setEmail(e.target.value)} />
-<input type="password" placeholder="enter password" value={password.value} onChange={(e)=>setPassword(e.target.value)} />
-<button onClick={submitButton}>submit</button>
-<Link to="/signup">Sign Up page</Link>
-<input type="text" placeholder="enter password" value={dl.value} onChange={(e)=>setDl(e.target.value)} />
-<button onClick={()=>deleteButton(dl)}>delete</button>
-<Link to="/admin">admin</Link>
-      {/* <form className="form" data-testid="login-form" onSubmit={submitButton}>
-        <div>
-          <label>
-            <input
-             data-testid="email-input"
-              type="email" 
-              placeholder="email"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)} />
-              
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              data-testid="password-input"
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+         <VStack
+          divider={<StackDivider borderColor='gray.200' />}
+           spacing={4}
+           align='stretch'
+           width="40%"
+           margin="auto"
+ 
+>
+         
+          <FormControl isRequired style={{marginTop:"100px"}} >
+          <FormLabel>Email</FormLabel>
+            <input style={{width:"60%",height:"20px"}}
+              type="email"
+              name="email"
+              value={email.value} 
+              onChange={(e)=>setEmail(e.target.value)} 
             />
-          </label>
-        </div>
-        <div>
-          <button data-testid="form-submit" type="submit">
-            SUBMIT
-          </button>
-        </div>
-      </form>
-      <div>
-        <Link className="message" to="/">
-          Go Back
-        </Link>
-      </div> */}
+             <FormLabel>Password</FormLabel>
+            <input style={{width:"60%",height:"20px"}}
+              type="password"
+              name="password"
+              value={password.value}
+               onChange={(e)=>setPassword(e.target.value)}
+            />
+           </FormControl>
+          
+         
+            <button onClick={submitButton} style={{width:"80px",height:"30px",fontSize:"16px"}} >
+            submit
+            </button>
+            <div style={{display:"flex", gap:"60px",marginTop:"20px"}}>
+              <button style={{width:"80px",height:"30px"}}>
+              <Link to="/signup"  style={{paddingLeft: 13, textDecoration: 'none', color:"white"}} >Sign Up </Link>
+              </button>
+            <button style={{width:"80px",height:"30px"}}>
+              <Link to="/admin"  style={{paddingLeft: 13, textDecoration: 'none', color:"white"}} >Admin</Link>
+            </button>
+
+            </div>
+          
+          </VStack>
+
     </div>
     </div>
   );
