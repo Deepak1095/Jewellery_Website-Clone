@@ -29,7 +29,6 @@ export default function SignUp() {
       const { name, value } = e.target
       dispatchFormValue({ [name]: value })
     }
-  
     const onFormSubmit = () => {
     console.log("heii")
           axios.post('https://js211-project.onrender.com/login', {
@@ -106,7 +105,7 @@ export default function SignUp() {
           
          
             <button onClick={onFormSubmit} style={{width:"20%"}} >
-              <Link to="/SignIn" style={{paddingLeft: 13, textDecoration: 'none', color:"black"}} >Sign Up</Link>
+              <Link to="/login" style={{paddingLeft: 13, textDecoration: 'none', color:"black"}} >Sign Up</Link>
             </button>
           
           </VStack>

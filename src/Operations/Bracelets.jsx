@@ -24,15 +24,18 @@ console.log(page)
  return (loading)?(<LoadingIndicator />):( 
   <>
         <Navbar />
-        <Pagination 
+        <div style={{display:"flex", margin:"5%"}}> 
+      
+       <Pagination 
         current={page}
         onChange={(page)=>setPage(page)}
         />
+       </div>
 
-   <div data-testid="restaurants-container" style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", border:"1px solid red",width:"67%",marginLeft:"28%"}} >
+   <div data-testid="restaurants-container" style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", border:"1px solid black",width:"67%",marginLeft:"28%"}} >
   
        {product?.map(function(item){
-return  <div key={item.id} style={{margin:"10px",border:"1px red solid"}}>
+return  <div key={item.id} style={{margin:"10px",border:"1px black solid"}}>
     
          <img style={{width:"100%"}} src={item.img} />
          <h3>Price :{item.Price}</h3>
@@ -41,10 +44,7 @@ return  <div key={item.id} style={{margin:"10px",border:"1px red solid"}}>
         })
        }
        </div>
-       <div style={{display:"flex", margin:"auto"}}> 
       
-
-       </div>
   </>
  ) 
 }

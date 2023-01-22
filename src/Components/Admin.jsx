@@ -1,4 +1,4 @@
-import {React,useRef,useEffect,useState} from 'react'
+import {React,useRef,useEffect,useState,useReducer} from 'react'
 import {Link} from "@chakra-ui/react"
 import axios from "axios"
 import Navbar from "./Navbar"
@@ -13,16 +13,53 @@ import {
   Box,Button,useDisclosure,SimpleGrid,Input
 } from '@chakra-ui/react'
 const Admin = () => {
-    const [state,setState]=useState("")
-    const val=useRef("")
-    const data=(details)=>{
-        axios.get(`https://js211-project.onrender.com/${details}`)
-        .then(res=>console.log(res.data))
-        }
+    const [linkDetails,setLinkDetails]=useState("")
+    //const val=useRef("")
+   
     
-useEffect(()=>{
-    data(state)
-},[state])
+
+
+
+
+
+
+
+
+
+const val = useRef("");
+const val1 = useRef("");
+const val2 = useRef("");
+const init = [];
+const reducer = (state, { type, payload ,payload1,payload2}) => {
+  switch (type) {
+    case "ADD": {
+      return [
+        ...state,
+        {  "extra-details":payload,
+          "Price":payload1,
+          "img": payload2 ,
+
+         }
+      ];
+    }
+    default:
+      return state;
+  }
+};
+const [state, dispatch] = useReducer(reducer, init);
+console.log(state)
+const data=(details)=>{
+  axios.post(`https://js211-project.onrender.com/${details}`,{
+    "img":val.current.value
+  })
+  .then(res=>console.log(res.data))
+  }
+
+const deleteData=(id)=>{
+  axios.delete(`https://js211-project.onrender.com/earrings/${id}`)
+}
+
+
 function PostModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -35,20 +72,23 @@ function PostModal() {
           <ModalCloseButton />
           <ModalBody>
          <SimpleGrid columns={1} spacing={10}>
-         <Input placeholder='Enter Product Name' style={{height:"50px"}} />
-         <Input placeholder='Enter Price' style={{height:"50px"}} />
-         <Input placeholder='Enter Discounted Price' style={{height:"50px"}} />
-         <Input placeholder='Enter Image URL' style={{height:"50px"}} />
-  <select name="" id="" style={{height:"50px",marginTop:"-10px"}}>
-  <option value="">Choose Category</option>
-          <option value="">Earring</option>
-          <option value="">Bracelets</option>
+         <Input placeholder='Enter Image URL' style={{height:"50px"}} ref={val} />
+         <Input placeholder='Enter Price' style={{height:"50px"}} ref={val1} />
+         <Input placeholder= 'Enter Product Name' style={{height:"50px"}} ref={val2}/>
+  <select name="" id="" style={{height:"50px",marginTop:"-10px"}} value={linkDetails} onChange= 
+         {(e)=>setLinkDetails(e.target.value)}>
+          <option value="">Choose Category</option>
+          <option value="earrings">Earring</option>
+          <option value="bangles-bracelets">Bracelets</option>
          </select>
 </SimpleGrid>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme='blue' mr={3} onClick={() => {
+         // dispatch({ type: "ADD", payload: val.current.value,payload1: val1.current.value,payload2: val2.current.value  });
+         data(linkDetails)
+        }}>
               Submit
             </Button>
           </ModalFooter>
@@ -57,7 +97,6 @@ function PostModal() {
     </>
   )
 }
- 
 function DeleteModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -70,13 +109,16 @@ function DeleteModal() {
           <ModalCloseButton />
           <ModalBody>
          <SimpleGrid columns={1} spacing={10}>
-         <Input placeholder='Enter id' style={{height:"50px"}} />
+         <Input placeholder='Enter id' style={{height:"50px"}} ref={val}/>
         
 </SimpleGrid>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme='blue' mr={3} onClick={(() => {
+          deleteData(val.current.value)})
+         
+        } >
               Submit
             </Button>
           </ModalFooter>
@@ -85,6 +127,7 @@ function DeleteModal() {
     </>
   )
 }
+console.log(val)
 function UpdateModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -145,7 +188,10 @@ function ViewModal() {
    
   return (
    <div>
-    <Navbar />
+    
+    <Navbar style={{color:"white"}} />
+ 
+    
     <div style={{margin:"11% 20%" }}>
   <PostModal />
   <br />
@@ -156,6 +202,7 @@ function ViewModal() {
   <ViewModal />
   </div>
   </div>
+ 
   )
 }
 

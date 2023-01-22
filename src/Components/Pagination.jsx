@@ -8,7 +8,7 @@ export  function Pagination ({current,onChange}){
         >Previous</button>
         )
         const currentPage=(
-            <button>{current}</button>
+            <button style={{border:"1px solid black",width:"40px"}}>{current}</button>
             )
             const next=(
                 <button
