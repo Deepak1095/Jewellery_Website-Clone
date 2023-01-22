@@ -50,7 +50,7 @@ localStorage.setItem("cart_data", JSON.stringify(cartData));
        
         <div>
              <Navbar />
-      <div style={{display:"flex"}}>
+      <div style={{display:"flex",gap:"60px"}}>
       <img src={data?.img}  />
         <img src={data?.productcardImg}  />
       </div>
@@ -60,7 +60,7 @@ localStorage.setItem("cart_data", JSON.stringify(cartData));
          <h3>About : {data.about}</h3>
         <h3>Extra Details :{data.extraDetails}</h3>
         <hr />
-        <button onClick={addToCart}><Link to="/cart">add to cart</Link></button>
+        <button onClick={addToCart} style={{border:"1px solid black",margin:"4% 40%"}}><Link to="/cart">add to cart</Link></button>
         <DefaultFooter />
     </div>)
 }
