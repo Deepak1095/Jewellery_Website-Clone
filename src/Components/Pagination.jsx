@@ -12,7 +12,7 @@ export  function Pagination ({current,onChange}){
             )
             const next=(
                 <button
-                disabled={current===10}
+                disabled={current===9}
                 onClick={()=>onChange(current+1)}
                 >Next</button>
                 )

@@ -50,7 +50,9 @@ const [state, dispatch] = useReducer(reducer, init);
 console.log(state)
 const data=(details)=>{
   axios.post(`https://js211-project.onrender.com/${details}`,{
-    "img":val.current.value
+    "img":val.current.value,
+    "about":val2.current.value,
+    "Price":val1.current.value,
   })
   .then(res=>console.log(res.data))
   }
@@ -77,8 +79,8 @@ function PostModal() {
          <Input placeholder= 'Enter Product Name' style={{height:"50px"}} ref={val2}/>
   <select name="" id="" style={{height:"50px",marginTop:"-10px"}} value={linkDetails} onChange= 
          {(e)=>setLinkDetails(e.target.value)}>
-          <option value="">Choose Category</option>
           <option value="earrings">Earring</option>
+          <option value="solitaires">Solitaires</option>
           <option value="bangles-bracelets">Bracelets</option>
          </select>
 </SimpleGrid>
