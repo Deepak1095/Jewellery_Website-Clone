@@ -10,20 +10,43 @@ const Earrings = () => {
 const [product,setProduct]=React.useState([])
 const [loading,setLoading]=React.useState(true)
 const [page,setPage]=React.useState(1)
+const [toggle,setToggle]=React.useState(false)
 const data=(page=1)=>{
   axios.get(`https://js211-project.onrender.com/earrings?_limit=12&_page=${page}`)
   .then((res)=>setProduct(res.data),
   setLoading(false))
   .catch((err)=>console.log(err))
   }
+ 
  React.useEffect(()=>{
   setLoading(true)
   data(page)
  },[page])
+ const sortLH=()=>{
+     product.sort(function(a,b){
+          return a.Price-b.Price
+        })
+     console.log(product)
+        setToggle(!toggle)
+     }
+     const sortHL=()=>{
+          product.sort(function(a,b){
+               return b.Price-a.Price
+             })
+          console.log(product)
+             setToggle(!toggle)
+          }
+
+     React.useEffect(()=>{
+
+     },[toggle])
 
  return (loading)?(<LoadingIndicator />):( 
   <>
         <Navbar />
+        <button onClick={sortLH}>sort low to high</button>
+        <br />
+        <button onClick={sortHL}>sort high to low</button>
    <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)",margin:"4% 0% 5% 20%"}} >
        {product?.map(function(item){
 return  <div key={item.id} style={{marginBottom:"4%",textAlign:"center"}}>
